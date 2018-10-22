@@ -1,0 +1,15 @@
+A quick select is similar to a quick sort. 
+Instead of recursing on both sides it just recurse on the side that has the element.
+This reduces our average time complexity from O(nlgn) to just O(n).
+Specifically, in this program I used,
+Main to generate Students O(n)
+Went to the function In-between O(1)
+For looped into Select_gpa O(k-j) k being the top element to look for, and j the smallest.
+Select calls the partition O(1)
+partition runs through the list once, making some swaps O(n)
+Then you look left and right of the partition O(log n)
+But in a quick select you do n to each side. O(n) + O(nlgn) instead of O(nlgn)
+The loop runs k - j times so the final runtime of InbetweenGPA is O(n * (k - j))
+InbetweenAlpha runs in almost the exact same way O(n * (k - j))
+Giving an overall runtime of O(2(n * (k - j))
+Or θ(n)

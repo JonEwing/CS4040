@@ -1,3 +1,20 @@
+//******************************************************************* 
+//                                                                    
+//  Program:     main.cc                                            
+//                                                                     
+//  Author:      Jonathan Feige
+//  Email:       jf786915@ohio.edu
+//  ID:          P100790961
+//                                                                    
+//  Course:      CS4040
+//                                                                    
+//  Description: This program tests and runs the two inbetween 
+//               functions inbetweenGPA and inbetweenAlpha        
+//                                                                    
+//  Date:        10/21/2018
+//                                                                    
+//*******************************************************************
+
 #include <iostream>
 #include <vector>
 #include "inbetween.h"
@@ -8,23 +25,21 @@ using namespace std;
 int main()
 {
   vector<Student> Students;
-  size_t num_compares=0;
+  size_t num_compares=0;  //base values of compares
 
-  const size_t NUM_STUDENTS=1000000;
+  const size_t NUM_STUDENTS=10000;  //Number of students generated
 
   Students = generateStudents(NUM_STUDENTS);
-
-  Student tmp;
 
   // Is this in the right place for this statement?
   double start=timeofday();
 
   // Test first function.
 
-  quickSort(Students, 0, Students.size(),num_compares, 0);
-  vector<Student> answer = inbetweenGPA(Students, 1, 10, num_compares);
 
-  cout << "inbetweenGPA took " << timeofday() - start << " seconds" 
+  vector<Student> answer = inbetweenGPA(Students, 10, 20, num_compares);
+
+  cout << "\n\ninbetweenGPA took " << timeofday() - start << " seconds" 
        << " on input of size " << NUM_STUDENTS << endl;
 
   cout << "inbetweenGPA took " << num_compares << " comparisons" 
@@ -32,10 +47,11 @@ int main()
 
   cout << "There are " << answer.size() << " students in the answer" << endl << endl;
 
-  num_compares=0;
+  printvector(answer);
+
+  num_compares=0; //resets number of compares
   start=timeofday();
-  quickSort(Students, 0, Students.size(),num_compares, 1);
-  answer = inbetweenAlpha(Students, 100000, 200000, num_compares);
+  answer = inbetweenAlpha(Students, 1000, 2000, num_compares);
 
   cout << "inbetweenAlpha took " << timeofday() - start << " seconds" 
        << " on input of size " << NUM_STUDENTS << endl;
@@ -44,6 +60,8 @@ int main()
        << " on input of size " << NUM_STUDENTS << endl;
 
   cout << "There are " << answer.size() << " students in the answer" << endl;
+
+  printvector(answer);
 
   return(EXIT_SUCCESS);
 }
