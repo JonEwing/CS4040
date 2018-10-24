@@ -285,29 +285,17 @@ vector<Student> generateStudents(size_t num)
 
 int partition_gpa(vector<Student> &vec, int left, int right, size_t &num_compares)
 {
-    float pivot = vec[right].gpa;
-    
-    while ( left < right )
-    {
-        while ( vec[left].gpa < pivot )
-        {
-            num_compares++;
-            left++;
-        }
-        while ( vec[right].gpa > pivot )
-        {
-            num_compares++;
-            right--;
-        }
-        if ( vec[left].gpa == vec[right].gpa )
-        {
-            left++;
-        }
-        else if ( left < right ) {
-            swap(vec[left], vec[right]);
-        }
-    }
-    
+	Student tmp = vec[right];
+	int i = left;
+	    for (int j = left; j <= right - 1; j++) {
+	        if (vec[j].gpa <= tmp.gpa) {
+	        	num_compares++;
+	            swap(vec[i], vec[j]);
+	            i++;
+	        }
+	    }
+	    swap(vec[i], vec[right]);
+	    return i;
     return right;
 }
 
@@ -382,29 +370,34 @@ Student select_gpa(vector<Student> &vec, int left, int right, int k, size_t &num
 
 int partition_name(vector<Student> &vec, int left, int right, size_t &num_compares)
 {
-    string pivot = vec[right].first_name;
-    
-    while ( left < right )
-    {
-        while ( vec[left].first_name < pivot )
-        {
-            num_compares++;
-            left++;
-        }
-        while ( vec[right].first_name > pivot )
-        {
-            num_compares++;
-            right--;
-        }
-        if ( vec[left].first_name == vec[right].first_name )
-        {
-            left++;
-        }
-        else if ( left < right ) {
-            swap(vec[left], vec[right]);
-        }
-    }
-    
+	Student tmp = vec[right];
+	int i = left;
+	    for (int j = left; j <= right - 1; j++) {
+	        if (vec[j].first_name < tmp.first_name) {
+	        	num_compares++;
+	            swap(vec[i], vec[j]);
+	            i++;
+	        }
+	        else if(vec[j].first_name == tmp.first_name) {
+	        	if(vec[j].last_name < tmp.last_name)
+	        	{
+	        		num_compares++;
+	        		swap(vec[i], vec[j]);
+	        		i++;
+	        	}
+	        	else if (vec[j].last_name == tmp.last_name)
+				{
+	        		if(vec[j].SSN < tmp.SSN)
+	        			        	{
+	        			        		num_compares++;
+	        			        		swap(vec[i], vec[j]);
+	        			        		i++;
+	        			        	}
+				}
+	        }
+	    }
+	    swap(vec[i], vec[right]);
+	    return i;
     return right;
 }
 

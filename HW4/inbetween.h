@@ -114,6 +114,10 @@ int partition_name(vector<Student> &vec, int left, int right, size_t &num_compar
 //******************************************************************
 Student select_name(vector<Student> &vec, int left, int right, int k, size_t &num_compares);
 
+bool string_compare(Student a, Student b);
+
+
+
 
 
 #endif

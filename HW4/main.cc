@@ -27,7 +27,7 @@ int main()
   vector<Student> Students;
   size_t num_compares=0;  //base values of compares
 
-  const size_t NUM_STUDENTS=10000;  //Number of students generated
+  const size_t NUM_STUDENTS=150;  //Number of students generated
 
   Students = generateStudents(NUM_STUDENTS);
 
@@ -37,7 +37,7 @@ int main()
   // Test first function.
 
 
-  vector<Student> answer = inbetweenGPA(Students, 10, 20, num_compares);
+  vector<Student> answer = inbetweenGPA(Students, 1, 50, num_compares);
 
   cout << "\n\ninbetweenGPA took " << timeofday() - start << " seconds" 
        << " on input of size " << NUM_STUDENTS << endl;
@@ -47,11 +47,10 @@ int main()
 
   cout << "There are " << answer.size() << " students in the answer" << endl << endl;
 
-  printvector(answer);
 
   num_compares=0; //resets number of compares
   start=timeofday();
-  answer = inbetweenAlpha(Students, 1000, 2000, num_compares);
+  answer = inbetweenAlpha(Students, 1, 25, num_compares);
 
   cout << "inbetweenAlpha took " << timeofday() - start << " seconds" 
        << " on input of size " << NUM_STUDENTS << endl;
@@ -60,8 +59,6 @@ int main()
        << " on input of size " << NUM_STUDENTS << endl;
 
   cout << "There are " << answer.size() << " students in the answer" << endl;
-
-  printvector(answer);
 
   return(EXIT_SUCCESS);
 }
